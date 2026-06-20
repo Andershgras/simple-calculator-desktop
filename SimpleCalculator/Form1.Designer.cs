@@ -177,6 +177,7 @@
             btnMultiply.TabIndex = 12;
             btnMultiply.Text = "*";
             btnMultiply.UseVisualStyleBackColor = true;
+            btnMultiply.Click += btnMultiply_Click;
             // 
             // btnDivide
             // 
@@ -186,6 +187,7 @@
             btnDivide.TabIndex = 13;
             btnDivide.Text = "/";
             btnDivide.UseVisualStyleBackColor = true;
+            btnDivide.Click += btnDivide_Click;
             // 
             // btnEquals
             // 

@@ -35,19 +35,47 @@ namespace SimpleCalculator
             currentOperator = "-";
             isNewNumber = true;
         }
+        private void btnMultiply_Click(object sender, EventArgs e)
+        {
+            firstNumber = double.Parse(txtDisplay.Text);
+            currentOperator = "*";
+            isNewNumber = true;
+        }
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            firstNumber = double.Parse(txtDisplay.Text);
+            currentOperator = "/";
+            isNewNumber = true;
+        }
         private void btnEquals_Click(object sender, EventArgs e)
         {
             double secondNumber = double.Parse(txtDisplay.Text);
-
             double result = 0;
 
-            if (currentOperator == "+")
+            switch (currentOperator)
             {
-                result = firstNumber + secondNumber;
-            }
-            else if (currentOperator == "-")
-            {
-                result = firstNumber - secondNumber;
+                case "+":
+                    result = firstNumber + secondNumber;
+                    break;
+
+                case "-":
+                    result = firstNumber - secondNumber;
+                    break;
+
+                case "*":
+                    result = firstNumber * secondNumber;
+                    break;
+
+                case "/":
+                    if (secondNumber == 0)
+                    {
+                        txtDisplay.Text = "Cannot divide by zero";
+                        isNewNumber = true;
+                        return;
+                    }
+
+                    result = firstNumber / secondNumber;
+                    break;
             }
 
             txtDisplay.Text = result.ToString();
