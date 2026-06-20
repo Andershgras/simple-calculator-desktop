@@ -81,6 +81,13 @@ namespace SimpleCalculator
             txtDisplay.Text = result.ToString();
             isNewNumber = true;
         }
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = "0";
+            firstNumber = 0;
+            currentOperator = "";
+            isNewNumber = true;
+        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
