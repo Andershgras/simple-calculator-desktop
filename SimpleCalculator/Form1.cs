@@ -29,16 +29,29 @@ namespace SimpleCalculator
             currentOperator = "+";
             isNewNumber = true;
         }
+        private void btnSubtract_Click(object sender, EventArgs e)
+        {
+            firstNumber = double.Parse(txtDisplay.Text);
+            currentOperator = "-";
+            isNewNumber = true;
+        }
         private void btnEquals_Click(object sender, EventArgs e)
         {
             double secondNumber = double.Parse(txtDisplay.Text);
 
+            double result = 0;
+
             if (currentOperator == "+")
             {
-                double result = firstNumber + secondNumber;
-                txtDisplay.Text = result.ToString();
-                isNewNumber = true;
+                result = firstNumber + secondNumber;
             }
+            else if (currentOperator == "-")
+            {
+                result = firstNumber - secondNumber;
+            }
+
+            txtDisplay.Text = result.ToString();
+            isNewNumber = true;
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {

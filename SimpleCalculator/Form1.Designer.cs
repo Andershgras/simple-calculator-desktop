@@ -167,6 +167,7 @@
             btnSubstract.TabIndex = 11;
             btnSubstract.Text = "-";
             btnSubstract.UseVisualStyleBackColor = true;
+            btnSubstract.Click += btnSubtract_Click;
             // 
             // btnMultiply
             // 
