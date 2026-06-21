@@ -45,6 +45,7 @@
             btnEquals = new Button();
             btnClear = new Button();
             btn2 = new Button();
+            btnDecimal = new Button();
             SuspendLayout();
             // 
             // txtDisplay
@@ -191,7 +192,7 @@
             // 
             // btnEquals
             // 
-            btnEquals.Location = new Point(238, 188);
+            btnEquals.Location = new Point(356, 228);
             btnEquals.Name = "btnEquals";
             btnEquals.Size = new Size(112, 34);
             btnEquals.TabIndex = 14;
@@ -219,11 +220,22 @@
             btn2.UseVisualStyleBackColor = true;
             btn2.Click += NumberButton_Click;
             // 
+            // btnDecimal
+            // 
+            btnDecimal.Location = new Point(238, 188);
+            btnDecimal.Name = "btnDecimal";
+            btnDecimal.Size = new Size(112, 34);
+            btnDecimal.TabIndex = 17;
+            btnDecimal.Text = ".";
+            btnDecimal.UseVisualStyleBackColor = true;
+            btnDecimal.Click += btnDecimal_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnDecimal);
             Controls.Add(btn2);
             Controls.Add(btnClear);
             Controls.Add(btnEquals);
@@ -266,5 +278,6 @@
         private Button btnEquals;
         private Button btnClear;
         private Button btn2;
+        private Button btnDecimal;
     }
 }

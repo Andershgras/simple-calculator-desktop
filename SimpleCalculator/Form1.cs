@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace SimpleCalculator
 {
     public partial class Form1 : Form
@@ -5,10 +7,13 @@ namespace SimpleCalculator
         private double firstNumber = 0;
         private string currentOperator = "";
         private bool isNewNumber = true;
+
         public Form1()
         {
             InitializeComponent();
+            btnDecimal.Text = ".";
         }
+
         private void NumberButton_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -23,33 +28,38 @@ namespace SimpleCalculator
                 txtDisplay.Text += button.Text;
             }
         }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            firstNumber = double.Parse(txtDisplay.Text);
+            firstNumber = double.Parse(txtDisplay.Text, CultureInfo.InvariantCulture);
             currentOperator = "+";
             isNewNumber = true;
         }
+
         private void btnSubtract_Click(object sender, EventArgs e)
         {
-            firstNumber = double.Parse(txtDisplay.Text);
+            firstNumber = double.Parse(txtDisplay.Text, CultureInfo.InvariantCulture);
             currentOperator = "-";
             isNewNumber = true;
         }
+
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            firstNumber = double.Parse(txtDisplay.Text);
+            firstNumber = double.Parse(txtDisplay.Text, CultureInfo.InvariantCulture);
             currentOperator = "*";
             isNewNumber = true;
         }
+
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            firstNumber = double.Parse(txtDisplay.Text);
+            firstNumber = double.Parse(txtDisplay.Text, CultureInfo.InvariantCulture);
             currentOperator = "/";
             isNewNumber = true;
         }
+
         private void btnEquals_Click(object sender, EventArgs e)
         {
-            double secondNumber = double.Parse(txtDisplay.Text);
+            double secondNumber = double.Parse(txtDisplay.Text, CultureInfo.InvariantCulture);
             double result = 0;
 
             switch (currentOperator)
@@ -78,9 +88,10 @@ namespace SimpleCalculator
                     break;
             }
 
-            txtDisplay.Text = result.ToString();
+            txtDisplay.Text = result.ToString(CultureInfo.InvariantCulture);
             isNewNumber = true;
         }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtDisplay.Text = "0";
@@ -88,9 +99,24 @@ namespace SimpleCalculator
             currentOperator = "";
             isNewNumber = true;
         }
+
+        private void btnDecimal_Click(object sender, EventArgs e)
+        {
+            if (isNewNumber)
+            {
+                txtDisplay.Text = "0.";
+                isNewNumber = false;
+                return;
+            }
+
+            if (!txtDisplay.Text.Contains("."))
+            {
+                txtDisplay.Text += ".";
+            }
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
     }
 }
