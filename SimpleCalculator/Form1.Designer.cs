@@ -46,6 +46,7 @@
             btnClear = new Button();
             btn2 = new Button();
             btnDecimal = new Button();
+            btnBackspace = new Button();
             SuspendLayout();
             // 
             // txtDisplay
@@ -230,11 +231,22 @@
             btnDecimal.UseVisualStyleBackColor = true;
             btnDecimal.Click += btnDecimal_Click;
             // 
+            // btnBackspace
+            // 
+            btnBackspace.Location = new Point(238, 228);
+            btnBackspace.Name = "btnBackspace";
+            btnBackspace.Size = new Size(112, 34);
+            btnBackspace.TabIndex = 18;
+            btnBackspace.Text = "Backspace";
+            btnBackspace.UseVisualStyleBackColor = true;
+            btnBackspace.Click += btnBackspace_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnBackspace);
             Controls.Add(btnDecimal);
             Controls.Add(btn2);
             Controls.Add(btnClear);
@@ -279,5 +291,6 @@
         private Button btnClear;
         private Button btn2;
         private Button btnDecimal;
+        private Button btnBackspace;
     }
 }
