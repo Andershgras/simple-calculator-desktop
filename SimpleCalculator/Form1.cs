@@ -7,6 +7,7 @@ namespace SimpleCalculator
         private double firstNumber = 0;
         private string currentOperator = "";
         private bool isNewNumber = true;
+        private bool hasError = false;
 
         public Form1()
         {
@@ -93,6 +94,11 @@ namespace SimpleCalculator
 
         private void NumberButton_Click(object sender, EventArgs e)
         {
+            if (hasError)
+            {
+                ResetCalculator();
+            }
+
             Button button = (Button)sender;
 
             if (txtDisplay.Text == "0" || isNewNumber)
@@ -108,35 +114,42 @@ namespace SimpleCalculator
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            firstNumber = double.Parse(txtDisplay.Text, CultureInfo.InvariantCulture);
-            currentOperator = "+";
-            isNewNumber = true;
+            SetOperator("+");
         }
 
         private void btnSubtract_Click(object sender, EventArgs e)
         {
-            firstNumber = double.Parse(txtDisplay.Text, CultureInfo.InvariantCulture);
-            currentOperator = "-";
-            isNewNumber = true;
+            SetOperator("-");
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            firstNumber = double.Parse(txtDisplay.Text, CultureInfo.InvariantCulture);
-            currentOperator = "*";
-            isNewNumber = true;
+            SetOperator("*");
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            firstNumber = double.Parse(txtDisplay.Text, CultureInfo.InvariantCulture);
-            currentOperator = "/";
-            isNewNumber = true;
+            SetOperator("/");
         }
 
         private void btnEquals_Click(object sender, EventArgs e)
         {
-            double secondNumber = double.Parse(txtDisplay.Text, CultureInfo.InvariantCulture);
+            if (hasError)
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(currentOperator))
+            {
+                return;
+            }
+
+            if (!TryGetDisplayNumber(out double secondNumber))
+            {
+                ShowError("Error: Invalid input");
+                return;
+            }
+
             double result = 0;
 
             switch (currentOperator)
@@ -156,8 +169,7 @@ namespace SimpleCalculator
                 case "/":
                     if (secondNumber == 0)
                     {
-                        txtDisplay.Text = "Cannot divide by zero";
-                        isNewNumber = true;
+                        ShowError("Error: Cannot divide by zero");
                         return;
                     }
 
@@ -166,19 +178,31 @@ namespace SimpleCalculator
             }
 
             txtDisplay.Text = result.ToString(CultureInfo.InvariantCulture);
+            currentOperator = "";
             isNewNumber = true;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            ResetCalculator();
+        }
+
+        private void ResetCalculator()
+        {
             txtDisplay.Text = "0";
             firstNumber = 0;
             currentOperator = "";
             isNewNumber = true;
+            hasError = false;
         }
 
         private void btnDecimal_Click(object sender, EventArgs e)
         {
+            if (hasError)
+            {
+                ResetCalculator();
+            }
+
             if (isNewNumber)
             {
                 txtDisplay.Text = "0.";
@@ -194,7 +218,7 @@ namespace SimpleCalculator
 
         private void btnBackspace_Click(object sender, EventArgs e)
         {
-            if (isNewNumber)
+            if (hasError || isNewNumber)
             {
                 return;
             }
@@ -207,6 +231,36 @@ namespace SimpleCalculator
             {
                 isNewNumber = true;
             }
+        }
+
+        private void SetOperator(string operatorValue)
+        {
+            if (hasError)
+            {
+                return;
+            }
+
+            if (!TryGetDisplayNumber(out firstNumber))
+            {
+                ShowError("Error: Invalid input");
+                return;
+            }
+
+            currentOperator = operatorValue;
+            isNewNumber = true;
+        }
+
+        private bool TryGetDisplayNumber(out double number)
+        {
+            return double.TryParse(txtDisplay.Text, CultureInfo.InvariantCulture, out number);
+        }
+
+        private void ShowError(string message)
+        {
+            txtDisplay.Text = message;
+            currentOperator = "";
+            isNewNumber = true;
+            hasError = true;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
