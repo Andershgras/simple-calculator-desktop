@@ -1,6 +1,6 @@
 ﻿namespace SimpleCalculator
 {
-    partial class Form1
+    partial class CalculatorForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -272,7 +272,7 @@
             btnClearHistory.UseVisualStyleBackColor = true;
             btnClearHistory.Click += btnClearHistory_Click;
             // 
-            // Form1
+            // CalculatorForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -299,7 +299,7 @@
             Controls.Add(btn1);
             Controls.Add(btn0);
             Controls.Add(txtDisplay);
-            Name = "Form1";
+            Name = "CalculatorForm";
             Text = "Simple Calculator";
             ResumeLayout(false);
             PerformLayout();

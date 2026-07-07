@@ -2,23 +2,23 @@ using System.Globalization;
 
 namespace SimpleCalculator
 {
-    public partial class Form1 : Form
+    public partial class CalculatorForm : Form
     {
         private double firstNumber = 0;
         private string currentOperator = "";
         private bool isNewNumber = true;
         private bool hasError = false;
 
-        public Form1()
+        public CalculatorForm()
         {
             InitializeComponent();
             btnDecimal.Text = ".";
             KeyPreview = true;
-            KeyDown += Form1_KeyDown;
-            KeyPress += Form1_KeyPress;
+            KeyDown += CalculatorForm_KeyDown;
+            KeyPress += CalculatorForm_KeyPress;
         }
 
-        private void Form1_KeyDown(object? sender, KeyEventArgs e)
+        private void CalculatorForm_KeyDown(object? sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -39,7 +39,7 @@ namespace SimpleCalculator
             e.SuppressKeyPress = true;
         }
 
-        private void Form1_KeyPress(object? sender, KeyPressEventArgs e)
+        private void CalculatorForm_KeyPress(object? sender, KeyPressEventArgs e)
         {
             switch (e.KeyChar)
             {
