@@ -1,6 +1,6 @@
 ﻿namespace SimpleCalculator
 {
-    partial class Form1
+    partial class CalculatorForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -46,6 +46,10 @@
             btnClear = new Button();
             btn2 = new Button();
             btnDecimal = new Button();
+            btnBackspace = new Button();
+            lstHistory = new ListBox();
+            lblHistory = new Label();
+            btnClearHistory = new Button();
             SuspendLayout();
             // 
             // txtDisplay
@@ -230,11 +234,53 @@
             btnDecimal.UseVisualStyleBackColor = true;
             btnDecimal.Click += btnDecimal_Click;
             // 
-            // Form1
+            // btnBackspace
+            // 
+            btnBackspace.Location = new Point(238, 228);
+            btnBackspace.Name = "btnBackspace";
+            btnBackspace.Size = new Size(112, 34);
+            btnBackspace.TabIndex = 18;
+            btnBackspace.Text = "Backspace";
+            btnBackspace.UseVisualStyleBackColor = true;
+            btnBackspace.Click += btnBackspace_Click;
+            // 
+            // lstHistory
+            // 
+            lstHistory.FormattingEnabled = true;
+            lstHistory.ItemHeight = 25;
+            lstHistory.Location = new Point(490, 68);
+            lstHistory.Name = "lstHistory";
+            lstHistory.Size = new Size(250, 154);
+            lstHistory.TabIndex = 19;
+            // 
+            // lblHistory
+            // 
+            lblHistory.AutoSize = true;
+            lblHistory.Location = new Point(490, 34);
+            lblHistory.Name = "lblHistory";
+            lblHistory.Size = new Size(66, 25);
+            lblHistory.TabIndex = 20;
+            lblHistory.Text = "History";
+            // 
+            // btnClearHistory
+            // 
+            btnClearHistory.Location = new Point(490, 228);
+            btnClearHistory.Name = "btnClearHistory";
+            btnClearHistory.Size = new Size(250, 34);
+            btnClearHistory.TabIndex = 21;
+            btnClearHistory.Text = "Clear History";
+            btnClearHistory.UseVisualStyleBackColor = true;
+            btnClearHistory.Click += btnClearHistory_Click;
+            // 
+            // CalculatorForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnClearHistory);
+            Controls.Add(lblHistory);
+            Controls.Add(lstHistory);
+            Controls.Add(btnBackspace);
             Controls.Add(btnDecimal);
             Controls.Add(btn2);
             Controls.Add(btnClear);
@@ -253,7 +299,7 @@
             Controls.Add(btn1);
             Controls.Add(btn0);
             Controls.Add(txtDisplay);
-            Name = "Form1";
+            Name = "CalculatorForm";
             Text = "Simple Calculator";
             ResumeLayout(false);
             PerformLayout();
@@ -279,5 +325,9 @@
         private Button btnClear;
         private Button btn2;
         private Button btnDecimal;
+        private Button btnBackspace;
+        private ListBox lstHistory;
+        private Label lblHistory;
+        private Button btnClearHistory;
     }
 }
