@@ -47,6 +47,9 @@
             btn2 = new Button();
             btnDecimal = new Button();
             btnBackspace = new Button();
+            lstHistory = new ListBox();
+            lblHistory = new Label();
+            btnClearHistory = new Button();
             SuspendLayout();
             // 
             // txtDisplay
@@ -241,11 +244,42 @@
             btnBackspace.UseVisualStyleBackColor = true;
             btnBackspace.Click += btnBackspace_Click;
             // 
+            // lstHistory
+            // 
+            lstHistory.FormattingEnabled = true;
+            lstHistory.ItemHeight = 25;
+            lstHistory.Location = new Point(490, 68);
+            lstHistory.Name = "lstHistory";
+            lstHistory.Size = new Size(250, 154);
+            lstHistory.TabIndex = 19;
+            // 
+            // lblHistory
+            // 
+            lblHistory.AutoSize = true;
+            lblHistory.Location = new Point(490, 34);
+            lblHistory.Name = "lblHistory";
+            lblHistory.Size = new Size(66, 25);
+            lblHistory.TabIndex = 20;
+            lblHistory.Text = "History";
+            // 
+            // btnClearHistory
+            // 
+            btnClearHistory.Location = new Point(490, 228);
+            btnClearHistory.Name = "btnClearHistory";
+            btnClearHistory.Size = new Size(250, 34);
+            btnClearHistory.TabIndex = 21;
+            btnClearHistory.Text = "Clear History";
+            btnClearHistory.UseVisualStyleBackColor = true;
+            btnClearHistory.Click += btnClearHistory_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnClearHistory);
+            Controls.Add(lblHistory);
+            Controls.Add(lstHistory);
             Controls.Add(btnBackspace);
             Controls.Add(btnDecimal);
             Controls.Add(btn2);
@@ -292,5 +326,8 @@
         private Button btn2;
         private Button btnDecimal;
         private Button btnBackspace;
+        private ListBox lstHistory;
+        private Label lblHistory;
+        private Button btnClearHistory;
     }
 }

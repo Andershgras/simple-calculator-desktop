@@ -150,9 +150,10 @@ namespace SimpleCalculator
                 return;
             }
 
+            string historyOperator = currentOperator;
             double result = 0;
 
-            switch (currentOperator)
+            switch (historyOperator)
             {
                 case "+":
                     result = firstNumber + secondNumber;
@@ -178,6 +179,7 @@ namespace SimpleCalculator
             }
 
             txtDisplay.Text = result.ToString(CultureInfo.InvariantCulture);
+            AddHistory(firstNumber, historyOperator, secondNumber, result);
             currentOperator = "";
             isNewNumber = true;
         }
@@ -261,6 +263,24 @@ namespace SimpleCalculator
             currentOperator = "";
             isNewNumber = true;
             hasError = true;
+        }
+
+        private void AddHistory(double leftNumber, string operatorValue, double rightNumber, double result)
+        {
+            string historyItem = string.Format(
+                CultureInfo.InvariantCulture,
+                "{0} {1} {2} = {3}",
+                leftNumber,
+                operatorValue,
+                rightNumber,
+                result);
+
+            lstHistory.Items.Insert(0, historyItem);
+        }
+
+        private void btnClearHistory_Click(object sender, EventArgs e)
+        {
+            lstHistory.Items.Clear();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
