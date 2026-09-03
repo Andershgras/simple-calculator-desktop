@@ -52,6 +52,7 @@
             btnClearHistory = new Button();
             btnToggleSign = new Button();
             lblPendingCalculation = new Label();
+            btnClearEntry = new Button();
             SuspendLayout();
             // 
             // txtDisplay
@@ -293,11 +294,22 @@
             lblPendingCalculation.TabIndex = 23;
             lblPendingCalculation.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // btnClearEntry
+            // 
+            btnClearEntry.Location = new Point(120, 253);
+            btnClearEntry.Name = "btnClearEntry";
+            btnClearEntry.Size = new Size(112, 34);
+            btnClearEntry.TabIndex = 24;
+            btnClearEntry.Text = "CE";
+            btnClearEntry.UseVisualStyleBackColor = true;
+            btnClearEntry.Click += btnClearEntry_Click;
+            // 
             // CalculatorForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 475);
+            Controls.Add(btnClearEntry);
             Controls.Add(lblPendingCalculation);
             Controls.Add(btnToggleSign);
             Controls.Add(btnClearHistory);
@@ -354,5 +366,6 @@
         private Button btnClearHistory;
         private Button btnToggleSign;
         private Label lblPendingCalculation;
+        private Button btnClearEntry;
     }
 }
