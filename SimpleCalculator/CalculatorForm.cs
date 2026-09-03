@@ -390,6 +390,42 @@ namespace SimpleCalculator
             lstHistory.Items.Clear();
         }
 
+        private void lstHistory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstHistory.SelectedItem is not string historyItem)
+            {
+                return;
+            }
+
+            if (!TryGetHistoryResult(historyItem, out double result))
+            {
+                return;
+            }
+
+            txtDisplay.Text = result.ToString(CultureInfo.InvariantCulture);
+            firstNumber = 0;
+            currentOperator = "";
+            pendingCalculation = "";
+            isNewNumber = true;
+            hasError = false;
+            lblPendingCalculation.Text = "";
+        }
+
+        private static bool TryGetHistoryResult(string historyItem, out double result)
+        {
+            result = 0;
+            const string resultSeparator = " = ";
+            int separatorIndex = historyItem.LastIndexOf(resultSeparator, StringComparison.Ordinal);
+
+            if (separatorIndex < 0)
+            {
+                return false;
+            }
+
+            string resultText = historyItem[(separatorIndex + resultSeparator.Length)..];
+            return double.TryParse(resultText, CultureInfo.InvariantCulture, out result);
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
         }
