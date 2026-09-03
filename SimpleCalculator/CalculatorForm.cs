@@ -6,6 +6,7 @@ namespace SimpleCalculator
     {
         private double firstNumber = 0;
         private string currentOperator = "";
+        private string pendingCalculation = "";
         private bool isNewNumber = true;
         private bool hasError = false;
 
@@ -158,43 +159,25 @@ namespace SimpleCalculator
                 return;
             }
 
-            string historyOperator = currentOperator;
-            double result = 0;
+            string historyCalculation = string.IsNullOrEmpty(pendingCalculation)
+                ? string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", firstNumber, currentOperator, secondNumber)
+                : string.Format(CultureInfo.InvariantCulture, "{0} {1}", pendingCalculation, secondNumber);
 
-            switch (historyOperator)
+            if (!TryCalculate(firstNumber, currentOperator, secondNumber, out double result))
             {
-                case "+":
-                    result = firstNumber + secondNumber;
-                    break;
-
-                case "-":
-                    result = firstNumber - secondNumber;
-                    break;
-
-                case "*":
-                    result = firstNumber * secondNumber;
-                    break;
-
-                case "/":
-                    if (secondNumber == 0)
-                    {
-                        ShowError("Error: Cannot divide by zero");
-                        return;
-                    }
-
-                    result = firstNumber / secondNumber;
-                    break;
+                ShowError("Error: Cannot divide by zero");
+                return;
             }
 
             txtDisplay.Text = result.ToString(CultureInfo.InvariantCulture);
             lblPendingCalculation.Text = string.Format(
                 CultureInfo.InvariantCulture,
-                "{0} {1} {2} =",
-                firstNumber,
-                historyOperator,
-                secondNumber);
-            AddHistory(firstNumber, historyOperator, secondNumber, result);
+                "{0} =",
+                historyCalculation);
+            AddHistory(historyCalculation, result);
+            firstNumber = result;
             currentOperator = "";
+            pendingCalculation = "";
             isNewNumber = true;
         }
 
@@ -215,6 +198,7 @@ namespace SimpleCalculator
             txtDisplay.Text = "0";
             firstNumber = 0;
             currentOperator = "";
+            pendingCalculation = "";
             isNewNumber = true;
             hasError = false;
             lblPendingCalculation.Text = "";
@@ -284,19 +268,71 @@ namespace SimpleCalculator
                 return;
             }
 
-            if (!TryGetDisplayNumber(out firstNumber))
+            if (!TryGetDisplayNumber(out double currentNumber))
             {
                 ShowError("Error: Invalid input");
                 return;
             }
 
+            if (!string.IsNullOrEmpty(currentOperator) && !isNewNumber)
+            {
+                if (!TryCalculate(firstNumber, currentOperator, currentNumber, out double intermediateResult))
+                {
+                    ShowError("Error: Cannot divide by zero");
+                    return;
+                }
+
+                pendingCalculation = string.IsNullOrEmpty(pendingCalculation)
+                    ? string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", firstNumber, currentOperator, currentNumber)
+                    : string.Format(CultureInfo.InvariantCulture, "{0} {1}", pendingCalculation, currentNumber);
+                firstNumber = intermediateResult;
+                txtDisplay.Text = intermediateResult.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                firstNumber = currentNumber;
+                pendingCalculation = firstNumber.ToString(CultureInfo.InvariantCulture);
+            }
+
             currentOperator = operatorValue;
             isNewNumber = true;
-            lblPendingCalculation.Text = string.Format(
+            pendingCalculation = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0} {1}",
-                firstNumber,
+                pendingCalculation,
                 currentOperator);
+            lblPendingCalculation.Text = string.Format(
+                CultureInfo.InvariantCulture,
+                "{0}",
+                pendingCalculation);
+        }
+
+        private bool TryCalculate(double leftNumber, string operatorValue, double rightNumber, out double result)
+        {
+            result = 0;
+
+            switch (operatorValue)
+            {
+                case "+":
+                    result = leftNumber + rightNumber;
+                    return true;
+                case "-":
+                    result = leftNumber - rightNumber;
+                    return true;
+                case "*":
+                    result = leftNumber * rightNumber;
+                    return true;
+                case "/":
+                    if (rightNumber == 0)
+                    {
+                        return false;
+                    }
+
+                    result = leftNumber / rightNumber;
+                    return true;
+                default:
+                    return false;
+            }
         }
 
         private bool TryGetDisplayNumber(out double number)
@@ -308,19 +344,18 @@ namespace SimpleCalculator
         {
             txtDisplay.Text = message;
             currentOperator = "";
+            pendingCalculation = "";
             isNewNumber = true;
             hasError = true;
             lblPendingCalculation.Text = "";
         }
 
-        private void AddHistory(double leftNumber, string operatorValue, double rightNumber, double result)
+        private void AddHistory(string calculation, double result)
         {
             string historyItem = string.Format(
                 CultureInfo.InvariantCulture,
-                "{0} {1} {2} = {3}",
-                leftNumber,
-                operatorValue,
-                rightNumber,
+                "{0} = {1}",
+                calculation,
                 result);
 
             lstHistory.Items.Insert(0, historyItem);
