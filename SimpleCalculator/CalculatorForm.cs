@@ -13,6 +13,7 @@ namespace SimpleCalculator
         public CalculatorForm()
         {
             InitializeComponent();
+            ApplyVisualDesign();
             btnDecimal.Text = ".";
             KeyPreview = true;
             KeyDown += CalculatorForm_KeyDown;
@@ -300,6 +301,64 @@ namespace SimpleCalculator
         {
             txtDisplay.Text = calculator.DisplayText;
             lblPendingCalculation.Text = calculator.PendingCalculationText;
+        }
+
+        private void ApplyVisualDesign()
+        {
+            BackColor = Color.FromArgb(239, 244, 248);
+            Font = new Font("Segoe UI", 10F);
+
+            calculatorLayout.BackColor = Color.FromArgb(248, 250, 252);
+            calculatorLayout.Padding = new Padding(8);
+            buttonGrid.BackColor = Color.FromArgb(248, 250, 252);
+
+            lblPendingCalculation.Font = new Font("Segoe UI", 10F);
+            lblPendingCalculation.ForeColor = Color.FromArgb(100, 116, 139);
+
+            txtDisplay.BackColor = Color.FromArgb(15, 23, 42);
+            txtDisplay.BorderStyle = BorderStyle.FixedSingle;
+            txtDisplay.Font = new Font("Segoe UI", 22F, FontStyle.Bold);
+            txtDisplay.ForeColor = Color.White;
+
+            historyLayout.BackColor = Color.White;
+            historyLayout.Padding = new Padding(8);
+            historyLayout.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
+            lblHistory.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblHistory.ForeColor = Color.FromArgb(30, 41, 59);
+            lstHistory.BackColor = Color.FromArgb(248, 250, 252);
+            lstHistory.BorderStyle = BorderStyle.FixedSingle;
+            lstHistory.Font = new Font("Segoe UI", 9F);
+            lstHistory.ForeColor = Color.FromArgb(30, 41, 59);
+
+            StyleButtons(new[] { btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnDecimal },
+                Color.White,
+                Color.FromArgb(15, 23, 42));
+            StyleButtons(new[] { btnAdd, btnSubstract, btnMultiply, btnDivide },
+                Color.FromArgb(37, 99, 235),
+                Color.White);
+            StyleButtons(new[] { btnToggleSign, btnClearEntry, btnBackspace },
+                Color.FromArgb(226, 232, 240),
+                Color.FromArgb(30, 41, 59));
+            StyleButtons(new[] { btnClear, btnClearHistory },
+                Color.FromArgb(254, 226, 226),
+                Color.FromArgb(153, 27, 27));
+            StyleButtons(new[] { btnEquals },
+                Color.FromArgb(22, 163, 74),
+                Color.White);
+        }
+
+        private static void StyleButtons(IEnumerable<Button> buttons, Color backColor, Color foreColor)
+        {
+            foreach (Button button in buttons)
+            {
+                button.BackColor = backColor;
+                button.FlatAppearance.BorderColor = Color.FromArgb(203, 213, 225);
+                button.FlatAppearance.BorderSize = 1;
+                button.FlatStyle = FlatStyle.Flat;
+                button.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                button.ForeColor = foreColor;
+                button.UseVisualStyleBackColor = false;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

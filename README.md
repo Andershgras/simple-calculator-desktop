@@ -25,6 +25,7 @@ A simple Windows Forms calculator built with C#. This project provides basic cal
 - Separate clear history button
 - Calculator logic separated from the Windows Forms UI
 - Responsive layout that resizes calculator controls and keeps history usable
+- Improved visual design with emphasized display, distinct operators, and integrated history
 - Improved error handling for invalid input and division by zero
 
 ## Download
