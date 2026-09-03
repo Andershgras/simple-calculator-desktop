@@ -4,6 +4,12 @@ namespace SimpleCalculator
 {
     public partial class CalculatorForm : Form
     {
+        private const int MaxHistoryItems = 50;
+        private static readonly string HistoryDirectory = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "SimpleCalculator");
+        private static readonly string HistoryFilePath = Path.Combine(HistoryDirectory, "history.txt");
+
         private double firstNumber = 0;
         private string currentOperator = "";
         private string pendingCalculation = "";
@@ -17,6 +23,8 @@ namespace SimpleCalculator
             KeyPreview = true;
             KeyDown += CalculatorForm_KeyDown;
             KeyPress += CalculatorForm_KeyPress;
+            FormClosing += CalculatorForm_FormClosing;
+            LoadHistory();
         }
 
         private void CalculatorForm_KeyDown(object? sender, KeyEventArgs e)
@@ -383,11 +391,18 @@ namespace SimpleCalculator
                 result);
 
             lstHistory.Items.Insert(0, historyItem);
+            TrimHistory();
         }
 
         private void btnClearHistory_Click(object sender, EventArgs e)
         {
             lstHistory.Items.Clear();
+            DeleteSavedHistory();
+        }
+
+        private void CalculatorForm_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            SaveHistory();
         }
 
         private void lstHistory_SelectedIndexChanged(object sender, EventArgs e)
@@ -424,6 +439,68 @@ namespace SimpleCalculator
 
             string resultText = historyItem[(separatorIndex + resultSeparator.Length)..];
             return double.TryParse(resultText, CultureInfo.InvariantCulture, out result);
+        }
+
+        private void LoadHistory()
+        {
+            try
+            {
+                if (!File.Exists(HistoryFilePath))
+                {
+                    return;
+                }
+
+                foreach (string historyItem in File.ReadLines(HistoryFilePath).Take(MaxHistoryItems))
+                {
+                    if (TryGetHistoryResult(historyItem, out _))
+                    {
+                        lstHistory.Items.Add(historyItem);
+                    }
+                }
+            }
+            catch
+            {
+                lstHistory.Items.Clear();
+            }
+        }
+
+        private void SaveHistory()
+        {
+            try
+            {
+                Directory.CreateDirectory(HistoryDirectory);
+                File.WriteAllLines(
+                    HistoryFilePath,
+                    lstHistory.Items
+                        .OfType<string>()
+                        .Where(historyItem => TryGetHistoryResult(historyItem, out _))
+                        .Take(MaxHistoryItems));
+            }
+            catch
+            {
+            }
+        }
+
+        private void DeleteSavedHistory()
+        {
+            try
+            {
+                if (File.Exists(HistoryFilePath))
+                {
+                    File.Delete(HistoryFilePath);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void TrimHistory()
+        {
+            while (lstHistory.Items.Count > MaxHistoryItems)
+            {
+                lstHistory.Items.RemoveAt(lstHistory.Items.Count - 1);
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
