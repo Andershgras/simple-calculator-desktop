@@ -85,6 +85,10 @@ namespace SimpleCalculator
                 case '/':
                     btnDivide.PerformClick();
                     break;
+                case '.':
+                case ',':
+                    btnDecimal.PerformClick();
+                    break;
                 default:
                     return;
             }
