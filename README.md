@@ -11,6 +11,7 @@ A simple Windows Forms calculator built with C#. This project provides basic cal
 - Decimal support from the decimal button, `.` key, and `,` key
 - Negative number support with the `+/-` button
 - Pending calculation display above the main result
+- Chained calculations such as `2 + 3 + 4 =`
 - Keyboard input for numbers and operators
 - Enter key support for equals
 - Escape key support for clear
