@@ -255,6 +255,7 @@
             lstHistory.Name = "lstHistory";
             lstHistory.Size = new Size(250, 154);
             lstHistory.TabIndex = 19;
+            lstHistory.SelectedIndexChanged += lstHistory_SelectedIndexChanged;
             // 
             // lblHistory
             // 

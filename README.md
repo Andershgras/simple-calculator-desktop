@@ -20,6 +20,7 @@ A simple Windows Forms calculator built with C#. This project provides basic cal
 - Clear button to reset calculations
 - Clear Entry button to reset only the current number input
 - Calculation history
+- Select a history item to reuse its result in a new calculation
 - Separate clear history button
 - Improved error handling for invalid input and division by zero
 
