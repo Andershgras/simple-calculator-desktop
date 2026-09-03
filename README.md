@@ -16,6 +16,7 @@ A simple Windows Forms calculator built with C#. This project provides basic cal
 - Escape key support for clear
 - Backspace button and keyboard backspace support
 - Clear button to reset calculations
+- Clear Entry button to reset only the current number input
 - Calculation history
 - Separate clear history button
 - Improved error handling for invalid input and division by zero

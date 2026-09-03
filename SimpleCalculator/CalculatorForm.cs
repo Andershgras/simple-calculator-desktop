@@ -203,6 +203,13 @@ namespace SimpleCalculator
             ResetCalculator();
         }
 
+        private void btnClearEntry_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = "0";
+            isNewNumber = true;
+            hasError = false;
+        }
+
         private void ResetCalculator()
         {
             txtDisplay.Text = "0";
