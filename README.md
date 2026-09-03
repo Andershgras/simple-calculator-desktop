@@ -9,6 +9,7 @@ A simple Windows Forms calculator built with C#. This project provides basic cal
 - Multiplication
 - Division
 - Decimal support from the decimal button, `.` key, and `,` key
+- Negative number support with the `+/-` button
 - Keyboard input for numbers and operators
 - Enter key support for equals
 - Escape key support for clear

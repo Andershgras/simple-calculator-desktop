@@ -110,6 +110,10 @@ namespace SimpleCalculator
                 txtDisplay.Text = button.Text;
                 isNewNumber = false;
             }
+            else if (txtDisplay.Text == "-0")
+            {
+                txtDisplay.Text = "-" + button.Text;
+            }
             else
             {
                 txtDisplay.Text += button.Text;
@@ -222,6 +226,25 @@ namespace SimpleCalculator
             }
         }
 
+        private void btnToggleSign_Click(object sender, EventArgs e)
+        {
+            if (hasError)
+            {
+                return;
+            }
+
+            if (txtDisplay.Text.StartsWith("-", StringComparison.Ordinal))
+            {
+                txtDisplay.Text = txtDisplay.Text[1..];
+            }
+            else
+            {
+                txtDisplay.Text = "-" + txtDisplay.Text;
+            }
+
+            isNewNumber = false;
+        }
+
         private void btnBackspace_Click(object sender, EventArgs e)
         {
             if (hasError || isNewNumber)
@@ -229,12 +252,13 @@ namespace SimpleCalculator
                 return;
             }
 
-            txtDisplay.Text = txtDisplay.Text.Length > 1
+            txtDisplay.Text = txtDisplay.Text.Length > 1 && txtDisplay.Text != "-0"
                 ? txtDisplay.Text[..^1]
                 : "0";
 
-            if (txtDisplay.Text == "0")
+            if (txtDisplay.Text == "-" || txtDisplay.Text == "0")
             {
+                txtDisplay.Text = "0";
                 isNewNumber = true;
             }
         }
