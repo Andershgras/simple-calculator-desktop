@@ -19,6 +19,7 @@ namespace SimpleCalculator
             KeyDown += CalculatorForm_KeyDown;
             KeyPress += CalculatorForm_KeyPress;
             FormClosing += CalculatorForm_FormClosing;
+            Shown += CalculatorForm_Shown;
             LoadHistory();
         }
 
@@ -42,6 +43,8 @@ namespace SimpleCalculator
                     break;
                 case Keys.Back:
                     btnBackspace.PerformClick();
+                    break;
+                case Keys.Space:
                     break;
                 default:
                     return;
@@ -212,11 +215,17 @@ namespace SimpleCalculator
         {
             lstHistory.Items.Clear();
             DeleteSavedHistory();
+            ClearActiveControl();
         }
 
         private void CalculatorForm_FormClosing(object? sender, FormClosingEventArgs e)
         {
             SaveHistory();
+        }
+
+        private void CalculatorForm_Shown(object? sender, EventArgs e)
+        {
+            ClearActiveControl();
         }
 
         private void lstHistory_SelectedIndexChanged(object sender, EventArgs e)
@@ -301,6 +310,7 @@ namespace SimpleCalculator
         {
             txtDisplay.Text = calculator.DisplayText;
             lblPendingCalculation.Text = calculator.PendingCalculationText;
+            ClearActiveControl();
         }
 
         private void ApplyVisualDesign()
@@ -319,6 +329,7 @@ namespace SimpleCalculator
             txtDisplay.BorderStyle = BorderStyle.FixedSingle;
             txtDisplay.Font = new Font("Segoe UI", 22F, FontStyle.Bold);
             txtDisplay.ForeColor = Color.White;
+            txtDisplay.TabStop = false;
 
             historyLayout.BackColor = Color.White;
             historyLayout.Padding = new Padding(8);
@@ -357,8 +368,16 @@ namespace SimpleCalculator
                 button.FlatStyle = FlatStyle.Flat;
                 button.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
                 button.ForeColor = foreColor;
+                button.TabStop = false;
                 button.UseVisualStyleBackColor = false;
             }
+        }
+
+        private void ClearActiveControl()
+        {
+            ActiveControl = null;
+            txtDisplay.SelectionStart = txtDisplay.TextLength;
+            txtDisplay.SelectionLength = 0;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
