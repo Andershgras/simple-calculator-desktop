@@ -23,6 +23,7 @@ A simple Windows Forms calculator built with C#. This project provides basic cal
 - Select a history item to reuse its result in a new calculation
 - Calculation history is remembered between app sessions
 - Separate clear history button
+- Calculator logic separated from the Windows Forms UI
 - Improved error handling for invalid input and division by zero
 
 ## Download
