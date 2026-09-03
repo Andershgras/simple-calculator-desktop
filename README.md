@@ -14,6 +14,7 @@ A simple Windows Forms calculator built with C#. This project provides basic cal
 - Chained calculations such as `2 + 3 + 4 =`
 - Keyboard input for numbers and operators
 - Enter key support for equals
+- Ctrl+C support for copying the current display value
 - Escape key support for clear
 - Backspace button and keyboard backspace support
 - Clear button to reset calculations

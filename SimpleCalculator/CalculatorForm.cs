@@ -21,6 +21,14 @@ namespace SimpleCalculator
 
         private void CalculatorForm_KeyDown(object? sender, KeyEventArgs e)
         {
+            if (e.Control && e.KeyCode == Keys.C)
+            {
+                CopyDisplayValueToClipboard();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                return;
+            }
+
             switch (e.KeyCode)
             {
                 case Keys.Enter:
@@ -258,6 +266,22 @@ namespace SimpleCalculator
             {
                 txtDisplay.Text = "0";
                 isNewNumber = true;
+            }
+        }
+
+        private void CopyDisplayValueToClipboard()
+        {
+            if (hasError || !TryGetDisplayNumber(out _))
+            {
+                return;
+            }
+
+            try
+            {
+                Clipboard.SetText(txtDisplay.Text);
+            }
+            catch
+            {
             }
         }
 
