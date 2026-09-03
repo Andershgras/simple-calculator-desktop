@@ -187,6 +187,12 @@ namespace SimpleCalculator
             }
 
             txtDisplay.Text = result.ToString(CultureInfo.InvariantCulture);
+            lblPendingCalculation.Text = string.Format(
+                CultureInfo.InvariantCulture,
+                "{0} {1} {2} =",
+                firstNumber,
+                historyOperator,
+                secondNumber);
             AddHistory(firstNumber, historyOperator, secondNumber, result);
             currentOperator = "";
             isNewNumber = true;
@@ -204,6 +210,7 @@ namespace SimpleCalculator
             currentOperator = "";
             isNewNumber = true;
             hasError = false;
+            lblPendingCalculation.Text = "";
         }
 
         private void btnDecimal_Click(object sender, EventArgs e)
@@ -278,6 +285,11 @@ namespace SimpleCalculator
 
             currentOperator = operatorValue;
             isNewNumber = true;
+            lblPendingCalculation.Text = string.Format(
+                CultureInfo.InvariantCulture,
+                "{0} {1}",
+                firstNumber,
+                currentOperator);
         }
 
         private bool TryGetDisplayNumber(out double number)
@@ -291,6 +303,7 @@ namespace SimpleCalculator
             currentOperator = "";
             isNewNumber = true;
             hasError = true;
+            lblPendingCalculation.Text = "";
         }
 
         private void AddHistory(double leftNumber, string operatorValue, double rightNumber, double result)
