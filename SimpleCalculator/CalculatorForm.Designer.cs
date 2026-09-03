@@ -50,6 +50,7 @@
             lstHistory = new ListBox();
             lblHistory = new Label();
             btnClearHistory = new Button();
+            btnToggleSign = new Button();
             SuspendLayout();
             // 
             // txtDisplay
@@ -272,11 +273,22 @@
             btnClearHistory.UseVisualStyleBackColor = true;
             btnClearHistory.Click += btnClearHistory_Click;
             // 
+            // btnToggleSign
+            // 
+            btnToggleSign.Location = new Point(2, 228);
+            btnToggleSign.Name = "btnToggleSign";
+            btnToggleSign.Size = new Size(112, 34);
+            btnToggleSign.TabIndex = 22;
+            btnToggleSign.Text = "+/-";
+            btnToggleSign.UseVisualStyleBackColor = true;
+            btnToggleSign.Click += btnToggleSign_Click;
+            // 
             // CalculatorForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnToggleSign);
             Controls.Add(btnClearHistory);
             Controls.Add(lblHistory);
             Controls.Add(lstHistory);
@@ -329,5 +341,6 @@
         private ListBox lstHistory;
         private Label lblHistory;
         private Button btnClearHistory;
+        private Button btnToggleSign;
     }
 }
