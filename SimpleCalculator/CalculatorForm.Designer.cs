@@ -51,15 +51,16 @@
             lblHistory = new Label();
             btnClearHistory = new Button();
             btnToggleSign = new Button();
+            lblPendingCalculation = new Label();
             SuspendLayout();
             // 
             // txtDisplay
             // 
             txtDisplay.Font = new Font("Segoe UI", 20F);
-            txtDisplay.Location = new Point(2, 3);
+            txtDisplay.Location = new Point(2, 28);
             txtDisplay.Name = "txtDisplay";
             txtDisplay.ReadOnly = true;
-            txtDisplay.Size = new Size(150, 61);
+            txtDisplay.Size = new Size(466, 61);
             txtDisplay.TabIndex = 0;
             txtDisplay.Text = "0";
             txtDisplay.TextAlign = HorizontalAlignment.Right;
@@ -67,7 +68,7 @@
             // 
             // btn0
             // 
-            btn0.Location = new Point(120, 188);
+            btn0.Location = new Point(120, 213);
             btn0.Name = "btn0";
             btn0.Size = new Size(112, 34);
             btn0.TabIndex = 1;
@@ -77,7 +78,7 @@
             // 
             // btn1
             // 
-            btn1.Location = new Point(2, 148);
+            btn1.Location = new Point(2, 173);
             btn1.Name = "btn1";
             btn1.Size = new Size(112, 34);
             btn1.TabIndex = 2;
@@ -87,7 +88,7 @@
             // 
             // btn3
             // 
-            btn3.Location = new Point(238, 148);
+            btn3.Location = new Point(238, 173);
             btn3.Name = "btn3";
             btn3.Size = new Size(112, 34);
             btn3.TabIndex = 3;
@@ -97,7 +98,7 @@
             // 
             // btn4
             // 
-            btn4.Location = new Point(2, 108);
+            btn4.Location = new Point(2, 133);
             btn4.Name = "btn4";
             btn4.Size = new Size(112, 34);
             btn4.TabIndex = 4;
@@ -107,7 +108,7 @@
             // 
             // btn5
             // 
-            btn5.Location = new Point(120, 108);
+            btn5.Location = new Point(120, 133);
             btn5.Name = "btn5";
             btn5.Size = new Size(112, 34);
             btn5.TabIndex = 5;
@@ -117,7 +118,7 @@
             // 
             // btn6
             // 
-            btn6.Location = new Point(238, 108);
+            btn6.Location = new Point(238, 133);
             btn6.Name = "btn6";
             btn6.Size = new Size(112, 34);
             btn6.TabIndex = 6;
@@ -127,7 +128,7 @@
             // 
             // btn7
             // 
-            btn7.Location = new Point(2, 68);
+            btn7.Location = new Point(2, 93);
             btn7.Name = "btn7";
             btn7.Size = new Size(112, 34);
             btn7.TabIndex = 7;
@@ -137,7 +138,7 @@
             // 
             // btn8
             // 
-            btn8.Location = new Point(120, 68);
+            btn8.Location = new Point(120, 93);
             btn8.Name = "btn8";
             btn8.Size = new Size(112, 34);
             btn8.TabIndex = 8;
@@ -147,7 +148,7 @@
             // 
             // btn9
             // 
-            btn9.Location = new Point(238, 68);
+            btn9.Location = new Point(238, 93);
             btn9.Name = "btn9";
             btn9.Size = new Size(112, 34);
             btn9.TabIndex = 9;
@@ -157,7 +158,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(356, 188);
+            btnAdd.Location = new Point(356, 213);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(112, 34);
             btnAdd.TabIndex = 10;
@@ -167,7 +168,7 @@
             // 
             // btnSubstract
             // 
-            btnSubstract.Location = new Point(356, 148);
+            btnSubstract.Location = new Point(356, 173);
             btnSubstract.Name = "btnSubstract";
             btnSubstract.Size = new Size(112, 34);
             btnSubstract.TabIndex = 11;
@@ -177,7 +178,7 @@
             // 
             // btnMultiply
             // 
-            btnMultiply.Location = new Point(356, 108);
+            btnMultiply.Location = new Point(356, 133);
             btnMultiply.Name = "btnMultiply";
             btnMultiply.Size = new Size(112, 34);
             btnMultiply.TabIndex = 12;
@@ -187,7 +188,7 @@
             // 
             // btnDivide
             // 
-            btnDivide.Location = new Point(356, 68);
+            btnDivide.Location = new Point(356, 93);
             btnDivide.Name = "btnDivide";
             btnDivide.Size = new Size(112, 34);
             btnDivide.TabIndex = 13;
@@ -197,7 +198,7 @@
             // 
             // btnEquals
             // 
-            btnEquals.Location = new Point(356, 228);
+            btnEquals.Location = new Point(356, 253);
             btnEquals.Name = "btnEquals";
             btnEquals.Size = new Size(112, 34);
             btnEquals.TabIndex = 14;
@@ -207,7 +208,7 @@
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(2, 188);
+            btnClear.Location = new Point(2, 213);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(112, 34);
             btnClear.TabIndex = 15;
@@ -217,7 +218,7 @@
             // 
             // btn2
             // 
-            btn2.Location = new Point(120, 148);
+            btn2.Location = new Point(120, 173);
             btn2.Name = "btn2";
             btn2.Size = new Size(112, 34);
             btn2.TabIndex = 16;
@@ -227,7 +228,7 @@
             // 
             // btnDecimal
             // 
-            btnDecimal.Location = new Point(238, 188);
+            btnDecimal.Location = new Point(238, 213);
             btnDecimal.Name = "btnDecimal";
             btnDecimal.Size = new Size(112, 34);
             btnDecimal.TabIndex = 17;
@@ -237,7 +238,7 @@
             // 
             // btnBackspace
             // 
-            btnBackspace.Location = new Point(238, 228);
+            btnBackspace.Location = new Point(238, 253);
             btnBackspace.Name = "btnBackspace";
             btnBackspace.Size = new Size(112, 34);
             btnBackspace.TabIndex = 18;
@@ -249,7 +250,7 @@
             // 
             lstHistory.FormattingEnabled = true;
             lstHistory.ItemHeight = 25;
-            lstHistory.Location = new Point(490, 68);
+            lstHistory.Location = new Point(490, 93);
             lstHistory.Name = "lstHistory";
             lstHistory.Size = new Size(250, 154);
             lstHistory.TabIndex = 19;
@@ -257,7 +258,7 @@
             // lblHistory
             // 
             lblHistory.AutoSize = true;
-            lblHistory.Location = new Point(490, 34);
+            lblHistory.Location = new Point(490, 59);
             lblHistory.Name = "lblHistory";
             lblHistory.Size = new Size(66, 25);
             lblHistory.TabIndex = 20;
@@ -265,7 +266,7 @@
             // 
             // btnClearHistory
             // 
-            btnClearHistory.Location = new Point(490, 228);
+            btnClearHistory.Location = new Point(490, 253);
             btnClearHistory.Name = "btnClearHistory";
             btnClearHistory.Size = new Size(250, 34);
             btnClearHistory.TabIndex = 21;
@@ -275,7 +276,7 @@
             // 
             // btnToggleSign
             // 
-            btnToggleSign.Location = new Point(2, 228);
+            btnToggleSign.Location = new Point(2, 253);
             btnToggleSign.Name = "btnToggleSign";
             btnToggleSign.Size = new Size(112, 34);
             btnToggleSign.TabIndex = 22;
@@ -283,11 +284,21 @@
             btnToggleSign.UseVisualStyleBackColor = true;
             btnToggleSign.Click += btnToggleSign_Click;
             // 
+            // lblPendingCalculation
+            // 
+            lblPendingCalculation.ForeColor = SystemColors.GrayText;
+            lblPendingCalculation.Location = new Point(2, 3);
+            lblPendingCalculation.Name = "lblPendingCalculation";
+            lblPendingCalculation.Size = new Size(466, 25);
+            lblPendingCalculation.TabIndex = 23;
+            lblPendingCalculation.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // CalculatorForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 475);
+            Controls.Add(lblPendingCalculation);
             Controls.Add(btnToggleSign);
             Controls.Add(btnClearHistory);
             Controls.Add(lblHistory);
@@ -342,5 +353,6 @@
         private Label lblHistory;
         private Button btnClearHistory;
         private Button btnToggleSign;
+        private Label lblPendingCalculation;
     }
 }
